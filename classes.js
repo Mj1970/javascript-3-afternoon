@@ -13,7 +13,6 @@
 */
 
 ////////// PROBLEM 1 //////////
-// :-)
 /*
   Make a class to help us build all of the employees.
   Each employee has the following properties:
@@ -30,9 +29,20 @@
 */
 
 //Code Here
+class Employee {
+  constructor(fisrt_name, last_name, email, age) {
+     this.first_name = first_name;
+     this.last_name = last_name;
+     this.email = email;
+     this.age = age;
+     this.makeWidget = function(){
+       return fisrt_name + ' ' + last_name + 'Widget';
+     }
 
+  }
+} var user01 = new Employee('MJ', 'Bryce', 'brycementor@gmail.com', 25);
 
-
+console.log(user01);
 ////////// PROBLEM 2 //////////
 
 /*
@@ -50,7 +60,9 @@
 */
 
 //Code Here
-
+const Manager = Object.assign({}, {reports=
+[],});
+console.log(Manager);
 
 
 ////////// PROBLEM 3 //////////
@@ -76,9 +88,16 @@
 */
 
 //Code Here
-
-
-
+class ProgressiveManager{
+  constructor(fisrt_name, last_name, email, age) {
+     this.first_name = first_name;
+     this.last_name = last_name;
+     this.email = email;
+     this.age = age;
+     this.title = title;
+     this.bonus = bonus;
+     
+  }
 ////////// PROBLEM 4 - Black Diamond //////////
 
 /*
