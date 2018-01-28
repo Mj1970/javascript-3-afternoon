@@ -22,7 +22,7 @@ var carDetails = {
 */
 
 //Code Here
-
+var carDetails = ('red', 'toyota', 'tacoma')
 
 
 ////////// PROBLEM 2 //////////
@@ -54,7 +54,9 @@ function greeting( obj ) {
 */
 
 //Code Here
-
+function totalPopulation(){
+  
+}
 
 
 ////////// PROBLEM 4 //////////

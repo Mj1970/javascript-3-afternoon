@@ -30,19 +30,18 @@
 
 //Code Here
 class Employee {
-  constructor(fisrt_name, last_name, email, age) {
-     this.first_name = first_name;
-     this.last_name = last_name;
-     this.email = email;
-     this.age = age;
-     this.makeWidget = function(){
-       return fisrt_name + ' ' + last_name + 'Widget';
-     }
-
+  constructor(first_name, last_name, email, age) {
+    this.first_name = first_name;
+    this.last_name = last_name;
+    this.email = email;
+    this.age = age;
   }
-} var user01 = new Employee('MJ', 'Bryce', 'brycementor@gmail.com', 25);
+  makeWidget() {
+    return `${this.first_name} ${this.last_name} Widget`;
+  }
+}
+let employee = new Employee("first_name", "last_name", "email", 35);
 
-console.log(user01);
 ////////// PROBLEM 2 //////////
 
 /*
@@ -60,10 +59,20 @@ console.log(user01);
 */
 
 //Code Here
-const Manager = Object.assign({}, {reports=
-[],});
-console.log(Manager);
+class Manager extends Employee {
+  constructor(first_name, last_name, email, age) {
+    super(first_name, last_name, email, age);
 
+    this.reports = [];
+  }
+  hire(employee) {
+    this.reports.push(employee);
+  }
+  fire(index) {
+    this.reports.splice(index, 1);
+  }
+}
+let manager = new Manager("first_name", "last_name", "email", 35);
 
 ////////// PROBLEM 3 //////////
 
@@ -88,16 +97,32 @@ console.log(Manager);
 */
 
 //Code Here
-class ProgressiveManager{
-  constructor(fisrt_name, last_name, email, age) {
-     this.first_name = first_name;
-     this.last_name = last_name;
-     this.email = email;
-     this.age = age;
-     this.title = title;
-     this.bonus = bonus;
-     
+class ProgressiveManager extends Manager {
+  constructor(obj, obj1, obj2, obj3) {
+    super(obj, obj1, obj2, obj3);
+    this.title = "Not a manager";
+    this.bonus = 0;
   }
+  hire(employee) {
+    this.reports.push(employee);
+    if (this.reports.length > 0 && this.reports.length < 4) {
+      return (this.title = "Barely Manager");
+    } else if (this.reports.length > 3 && this.reports.length < 11) {
+      return (this.title = "Mostly Manager");
+    } else if (this.reports.length > 10 && this.reports.length < 51) {
+      return (this.title = "Manager");
+    } else if (this.reports.length > 50 && this.reports.length < 101) {
+      return (this.title = "Manager Plus");
+    } else if (this.reports.length >= 101) {
+      return (this.title = "Bestest Manager");
+    }
+  }
+  fire(index) {
+    this.reports.splice(index, 1);
+    this.bonus += 100;
+  }
+}
+let proBoss = new ProgressiveManager("first_name", "last_name", "email", 35);
 ////////// PROBLEM 4 - Black Diamond //////////
 
 /*
@@ -122,5 +147,25 @@ class ProgressiveManager{
 */
 
 //Code Here
-
-
+class Machine {
+  constructor() {
+    this.widgets_made_count = 0;
+    this.wear_and_tear_count = 0;
+    this.needs_reboot = false;
+  }
+  makeWidgets(num) {
+    this.widgets_made_count += num;
+    let wit = Math.floor(num / 50);
+    this.wear_and_tear_count += wit;
+  }
+  fixMachine() {
+    this.needs_reboot = true;
+  }
+  reboot() {
+    let that = this;
+    return function() {
+      that.wear_and_tear_count -= 10;
+      that.needs_reboot = false;
+    };
+  }
+}
